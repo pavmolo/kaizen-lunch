@@ -13,7 +13,7 @@ list_4 = 'answer_score'
 
 df_sector_margin_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
 df_sector_margin = pd.read_csv(df_sector_margin_csv)
-df_sector_margin.set_index('sector', inplace=True)
+df_sector_margin.set_index('dish_name', inplace=True)
 df_sector_margin = pd.Series(df_sector_margin['margin'])
 
 industry_list = df_sector_margin.index
