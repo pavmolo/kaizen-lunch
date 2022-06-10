@@ -25,6 +25,6 @@ dish_list = df_dish_list.index
 def show_predict_page():
     d = st.date_input("Сегодня:", today)
     st.write('Your birthday is:', d)
-    dish_list = st.radio('Меню', dish_list, index=0)
+    dish_list_radio = st.radio('Меню', dish_list, index=0)
 # Вызываем приложение
 show_predict_page()
