@@ -11,23 +11,20 @@ today = date.today()
 #from PIL import Image
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
-list_1 = 'sector_margin'
-list_2 = 'growth_rate'
-list_3 = 'deltas_breakdown'
-list_4 = 'answer_score'
+list_1 = 'menu'
 
-df_sector_margin_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
-df_sector_margin = pd.read_csv(df_sector_margin_csv)
-df_sector_margin.set_index('dish_name', inplace=True)
-df_sector_margin = pd.Series(df_sector_margin['dish_id'])
+df_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
+df_dish_list = pd.read_csv(df_dish_list_csv)
+df_dish_list.set_index('dish_name', inplace=True)
+df_dish_list = pd.Series(df_dish_list['dish_id'])
 
-industry_list = df_sector_margin.index
+dish_list = df_dish_list.index
 
     
 # Функция приложения
 def show_predict_page():
-    d = st.date_input("When's your birthday", today)
+    d = st.date_input("Сегодня:", today)
     st.write('Your birthday is:', d)
-
+    dish_list = st.radio('Меню', dish_list, index=0)
 # Вызываем приложение
 show_predict_page()
