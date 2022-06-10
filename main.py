@@ -21,7 +21,7 @@ industry_list = df_sector_margin.index
     
 # Функция приложения
 def show_predict_page():
-    st.date_input(label, value=None, min_value=None, max_value=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False)
+    st.date_input('Введите дату', value=None, min_value=None, max_value=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False)
 
 # Вызываем приложение
 show_predict_page()
