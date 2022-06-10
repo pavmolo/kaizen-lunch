@@ -25,9 +25,9 @@ ln_list = len(dish_list)
 def show_predict_page():
     d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', d)
-    dish_list_radio = st.radio('Меню', dish_list, index=0) 
+    dish_list_radio = st.radio('Меню', dish_list, index=0, horizontal=True) 
     col1, col2 = st.columns(2)
     for i in range(0, ln_list):
-        dish_list_radio = col1.radio(df_dish_list.index[i], [0, 1, 2] , index=0, horizontal=True)
+        dish_list_radio = col1.radio(df_dish_list.index[i], [0, 1, 2], index=0, horizontal=True)
 # Вызываем приложение
 show_predict_page()
