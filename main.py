@@ -21,7 +21,10 @@ industry_list = df_sector_margin.index
     
 # Функция приложения
 def show_predict_page():
-    date = st.date_input('Введите дату', value=None, min_value=None, max_value=None, key=None, help=None, on_change=None, args=None, kwargs=None, disabled=False)
+    d = st.date_input(
+     "When's your birthday",
+     datetime.date(2019, 7, 6))
+    st.write('Your birthday is:', d)
 
 # Вызываем приложение
 show_predict_page()
