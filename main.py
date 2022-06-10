@@ -28,6 +28,6 @@ def show_predict_page():
     dish_list_radio = st.radio('Меню', dish_list, index=0) 
     col1, col2 = st.columns(2)
     for i in range(0, ln_list):
-        dish_list_radio = col1.radio(df_dish_list.index[[i]], [0, 1, 2] , index=0)
+        dish_list_radio = col1.radio(df_dish_list.index[i], [0, 1, 2] , index=0)
 # Вызываем приложение
 show_predict_page()
