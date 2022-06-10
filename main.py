@@ -5,6 +5,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 import datetime
 from datetime import datetime
+from datetime import date
+
+today = date.today()
 #from PIL import Image
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
@@ -23,7 +26,7 @@ industry_list = df_sector_margin.index
     
 # Функция приложения
 def show_predict_page():
-    d = st.date_input("When's your birthday", datetime.date(2019, 7, 6))
+    d = st.date_input("When's your birthday", today)
     st.write('Your birthday is:', d)
 
 # Вызываем приложение
