@@ -5,68 +5,19 @@ import plotly.graph_objects as go
 import plotly.express as px
 #from PIL import Image
 
-gsheetid = '1S7gJojFKedjSvSRM9npIDAzN_6mkSZhgEdGpNbxXnK0'
+gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'sector_margin'
 list_2 = 'growth_rate'
 list_3 = 'deltas_breakdown'
 list_4 = 'answer_score'
 
-df_sector_margin_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
-df_growth_rate_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_2)
-deltas_breakdown_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_3)
-answer_score_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_4)
-
-
+df_sector_margin_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(menu, list_1)
 df_sector_margin = pd.read_csv(df_sector_margin_csv)
-df_growth_rate = pd.read_csv(df_growth_rate_csv)
-df_deltas_breakdown = pd.read_csv(deltas_breakdown_csv)
-df_answer_score = pd.read_csv(answer_score_csv)
-
-
-df_growth_rate.set_index('growth_state', inplace=True)
 df_sector_margin.set_index('sector', inplace=True)
-df_deltas_breakdown.set_index('answer', inplace=True)
-df_answer_score.set_index('answer_id', inplace=True)
-
 df_sector_margin = pd.Series(df_sector_margin['margin'])
-df_growth_rate = pd.Series(df_growth_rate['growth_rate'])
-df_deltas_breakdown = pd.Series(df_deltas_breakdown['question_score'])
 
-gro_state_list = df_growth_rate.index
 industry_list = df_sector_margin.index
-answers_list = df_answer_score['answer']
 
-# Функция прибыли
-def lost_profit(ind, mar, rev, marg, gro):
-    growth_rate = df_growth_rate[mar]
-    margin_ind_rate = df_sector_margin[ind]
-    potencial_profit = rev * (margin_ind_rate)
-    act_profit = (marg / 100) * rev
-    profit_delta_qdc = max(potencial_profit - act_profit, 0.05 * act_profit)
-    profit_delta_growth = max(((growth_rate - (gro / 100)) * rev * margin_ind_rate), 0.005 * rev)
-    profit_delta_total = profit_delta_qdc + profit_delta_growth
-    return [profit_delta_total, profit_delta_qdc, profit_delta_growth]
-
-operation_breakdown_elems = 11
-groth_breakdown_elems = 6
-
-def break_down(a_1, a_2, a_3, a_4, a_5, a_6, a_7, a_8, a_9, a_10, a_11):
-    table = df_answer_score[['answer', 'answer_score']].set_index('answer')
-    table = pd.Series(table['answer_score'])
-    arg_list = pd.Series([table[a_1], table[a_2], table[a_3], table[a_4], table[a_5], table[a_6], 
-                          table[a_7], table[a_8], table[a_9], table[a_10], table[a_11]], index=df_deltas_breakdown.head(operation_breakdown_elems).index)
-    prom_list = arg_list * df_deltas_breakdown.head(operation_breakdown_elems)
-    sum_prom = prom_list.sum()
-    return pd.Series(prom_list / sum_prom)
-
-def break_down_g(a_12, a_13, a_14, a_15, a_16, a_17):
-    table = df_answer_score[['answer', 'answer_score']].set_index('answer')
-    table = pd.Series(table['answer_score'])
-    arg_list = pd.Series([table[a_12], table[a_13], table[a_14], table[a_15], table[a_16], table[a_17]], index=df_deltas_breakdown.tail(groth_breakdown_elems).index)
-    prom_list = arg_list * df_deltas_breakdown.tail(groth_breakdown_elems)
-    sum_prom = prom_list.sum()
-    return pd.Series(prom_list / sum_prom)
-    
     
 # Функция приложения
 def show_predict_page():
