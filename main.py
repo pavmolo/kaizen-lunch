@@ -45,6 +45,5 @@ def show_predict_page():
     order_list_full['Едок'] = member
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
-    col2.markdown(f'The old title is" {page.title}')
 # Вызываем приложение
 show_predict_page()
