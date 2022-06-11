@@ -12,11 +12,15 @@ today = date.today()
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
+list_2 = 'team'
 
 df_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
+member_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_2)
 df_dish_list = pd.read_csv(df_dish_list_csv)
+member_list = pd.read_csv(member_list_csv)
 df_dish_list.set_index('dish_name', inplace=True)
 df_dish_list = pd.Series(df_dish_list['dish_id'])
+df_member_list = pd.Series(df_dish_list['member'])
 
 dish_list = df_dish_list.index
 ln_list = len(dish_list)
@@ -25,6 +29,7 @@ ln_list = len(dish_list)
 def show_predict_page():
     d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', d)
+    st.radio(Выберите едока, df_member_list, index=0, horizontal=True)
     col1, col2 = st.columns(2)
     order_list = []
     for i in range(0, ln_list):
