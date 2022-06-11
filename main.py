@@ -44,7 +44,7 @@ df_member_list = pd.Series(member_list['member'])
 
 dish_list = df_dish_list.index
 ln_list = len(dish_list)
-    
+today = date.now()
 # Функция приложения
 def show_predict_page():
     d = st.date_input("Сегодня:", today)
