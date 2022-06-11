@@ -12,17 +12,6 @@ client = NotionClient(token_v2="3b7c4e7acf1f99610e191d44b024dd9ba201e470a96860d2
 page = client.get_block("https://kaizeninstitute.notion.site/4b77f19c3cbb4d8ea289eefd438da180?v=973c72e0c791442e937f86ca5a5c2f44")
 
 
-def readDatabase(databaseId, headers):
-    readUrl = f"https://api.notion.com/v1/databases/{databaseId}/query"
-
-    res = requests.request("POST", readUrl, headers=headers)
-    data = res.json()
-    print(res.status_code)
-    # print(res.text)
-
-    with open('./db.json', 'w', encoding='utf8') as f:
-        json.dump(data, f, ensure_ascii=False)
-
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
 list_2 = 'team'
