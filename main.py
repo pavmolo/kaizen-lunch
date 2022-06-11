@@ -34,6 +34,6 @@ def show_predict_page():
     order_list = pd.DataFrame(order_list, columns=['Блюдо', 'Количество'])
     order_list_not_zero = order_list[order_list['Количество'] > 0]
     #order_list_not_zero = order_list
-    st.dataframe(data=order_list_not_zero, width=None, height=None)
+    col2.dataframe(data=order_list_not_zero, width=None, height=None)
 # Вызываем приложение
 show_predict_page()
