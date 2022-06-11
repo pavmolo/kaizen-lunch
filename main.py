@@ -29,7 +29,7 @@ def show_predict_page():
     order_list = pd.DataFrame(data=[], index=dish_list, columns=['Блюдо'])
     for i in range(0, ln_list):
         dish_list_radio = col1.radio(df_dish_list.index[i], [0, 1, 2], index=0, horizontal=True)
-        order_list.concat(dish_list_radio)
+        pd.concat([order_list, dish_list_radio])
     st.dataframe(data=order_list, width=None, height=None)
 # Вызываем приложение
 show_predict_page()
