@@ -4,3 +4,4 @@ streamlit==1.10.0
 datetime==4.4
 gsheetsdb==0.1.13.1
 notion-py==0.0.10
+notion==0.0.28
