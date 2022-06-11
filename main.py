@@ -6,18 +6,10 @@ import plotly.express as px
 import datetime
 from datetime import datetime
 from datetime import date
-from google.oauth2 import service_account
 from gsheetsdb import connect
 
 today = date.today()
-#from PIL import Image
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
+conn = connect()
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
