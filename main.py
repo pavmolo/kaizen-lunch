@@ -6,10 +6,29 @@ import plotly.express as px
 import datetime
 from datetime import datetime
 from datetime import date
-from gsheetsdb import connect
 
-today = date.today()
-conn = connect()
+import requests, json
+
+token = 'fa985cf8-d579-4a4a-9785-3722dba9574a'
+
+databaseId = '4b77f19c3cbb4d8ea289eefd438da180'
+
+headers = {
+    "Authorization": "Bearer " + token,
+    "Content-Type": "application/json",
+    "Notion-Version": "2021-05-13"
+}
+
+def readDatabase(databaseId, headers):
+    readUrl = f"https://api.notion.com/v1/databases/{databaseId}/query"
+
+    res = requests.request("POST", readUrl, headers=headers)
+    data = res.json()
+    print(res.status_code)
+    # print(res.text)
+
+    with open('./db.json', 'w', encoding='utf8') as f:
+        json.dump(data, f, ensure_ascii=False)
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
