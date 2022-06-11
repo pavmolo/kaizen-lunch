@@ -29,7 +29,7 @@ def show_predict_page():
     order_list = []
     for i in range(0, ln_list):
         dish_list_radio = col1.radio(df_dish_list.index[i], [0, 1, 2], index=0, horizontal=True)
-        dish_item = [[df_dish_list.index[i]], [dish_list_radio]]
+        dish_item = [df_dish_list.index[i], dish_list_radio]
         order_list.append(dish_item)
     order_list = pd.DataFrame(order_list, columns=['Блюдо', 'Количество'])
     order_list['Количество'] = order_list['Количество'].astype('int')
