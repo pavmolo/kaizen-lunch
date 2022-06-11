@@ -8,16 +8,9 @@ from datetime import datetime
 from datetime import date
 from notion.client import NotionClient
 import requests, json
+client = NotionClient(token_v2="3b7c4e7acf1f99610e191d44b024dd9ba201e470a96860d2e1607fba7370497a5c0500cb3c49319ae8cc28607d72021bf6a388018475e9011fa9e891c6b3e57c10ee832634524a77068a6a4b2d89")
+page = client.get_block("https://www.notion.so/kaizeninstitute/4b77f19c3cbb4d8ea289eefd438da180?v=973c72e0c791442e937f86ca5a5c2f44")
 
-token = 'fa985cf8-d579-4a4a-9785-3722dba9574a'
-
-databaseId = '4b77f19c3cbb4d8ea289eefd438da180'
-
-headers = {
-    "Authorization": "Bearer " + token,
-    "Content-Type": "application/json",
-    "Notion-Version": "2021-05-13"
-}
 
 def readDatabase(databaseId, headers):
     readUrl = f"https://api.notion.com/v1/databases/{databaseId}/query"
@@ -63,5 +56,6 @@ def show_predict_page():
     order_list_full['Едок'] = member
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
+    col2.markdown(f'The old title is" {page.title}'
 # Вызываем приложение
 show_predict_page()
