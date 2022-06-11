@@ -32,7 +32,7 @@ def show_predict_page():
         dish_item = [[df_dish_list.index[i]], [dish_list_radio]]
         order_list.append(dish_item)
     order_list = pd.DataFrame(order_list, columns=['Блюдо', 'Количество'])
-    order_list_not_zero = order_list.query("'Количество' > 0"]
+    order_list_not_zero = order_list.query("'Количество' > 0")
     st.dataframe(data=order_list_not_zero, width=None, height=None)
 # Вызываем приложение
 show_predict_page()
