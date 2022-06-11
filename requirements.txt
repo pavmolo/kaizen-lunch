@@ -1,4 +1,5 @@
 plotly==4.5.0
 streamlit==1.10.0
 datetime==4.4
+google.oauth2==2.0
 gsheetsdb==0.1.13.1
