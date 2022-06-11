@@ -6,7 +6,7 @@ import plotly.express as px
 import datetime
 from datetime import datetime
 from datetime import date
-
+from notion.client import NotionClient
 import requests, json
 
 token = 'fa985cf8-d579-4a4a-9785-3722dba9574a'
