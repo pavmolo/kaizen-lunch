@@ -16,14 +16,12 @@ credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpdzsndgnYIsZfF67ySaBjAEsUEsDIwTdo'
+SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
 SAMPLE_RANGE_NAME = 'base'
 
 service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
 
 
-
-sheet_id = '1qZS-Y7NxD15B3rPTGpdzsndgnYIsZfF67ySaBjAEsUEsDIwTdo'
 
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
