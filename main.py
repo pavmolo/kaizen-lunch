@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
+from gsheetsdb import connect
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
