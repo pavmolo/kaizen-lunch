@@ -68,7 +68,7 @@ def show_predict_page():
       today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
       today_dish_list = pd.read_csv(today_dish_list_csv)
       today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата']).dt.date
-      today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().dt.date]
+      today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().date()]
       col2.dataframe(data=today_dish_list_fin, width=None, height=None)
 # Вызываем приложение
 
