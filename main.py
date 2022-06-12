@@ -3,8 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-import datetime
-from datetime import date
+from datetime import datetime
 from google.oauth2 import service_account
 from gsheetsdb import connect
 
