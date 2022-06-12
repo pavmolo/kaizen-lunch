@@ -55,7 +55,7 @@ def show_predict_page():
     col2.dataframe(data=order_list_not_zero, width=None, height=None)
     order_list_full = order_list_not_zero
     order_list_full['Едок'] = member
-    order_list_full['Дата'] = today
+    order_list_full['Дата'] = string(today)
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
       body = []
