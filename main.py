@@ -78,15 +78,6 @@ def show_predict_page():
         body.append(stroka)
       resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
       st.success('ВАШ ЗАКАЗ ПРИНЯТ!')
-      today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
-      today_dish_list = pd.read_csv(today_dish_list_csv)
-      today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата']).dt.date
-      today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().date()]
-      st.header('Все заказы на сегодня:')
-      st.dataframe(data=today_dish_list_fin, width=None, height=None)
-      table = pd.pivot_table(today_dish_list_fin, values='Количество', index='Блюдо', aggfunc=sum)
-      st.header('Список блюд со всех заказов:')
-      st.dataframe(data=table, width=None, height=None)
 # Вызываем приложение
 
 show_predict_page()
