@@ -42,8 +42,21 @@ today = datetime.today()
 # Функция приложения
 def show_predict_page():
     st.title('Форма заказа еды')
-    #d = st.date_input("Сегодня:", today)
-    st.write('Текущая дата:', pd.Timestamp.today().date())
+    col1, col2 = st.columns(2)
+        with col1:
+            #d = st.date_input("Сегодня:", today)
+            st.write('Текущая дата:', pd.Timestamp.today().date())
+        with col2:
+            with st.expander("Заказы на сегодня"):
+                today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
+                today_dish_list = pd.read_csv(today_dish_list_csv)
+                today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата']).dt.date
+                today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().date()]
+                st.header('Все заказы на сегодня:')
+                st.dataframe(data=today_dish_list_fin, width=None, height=None)
+                table = pd.pivot_table(today_dish_list_fin, values='Количество', index='Блюдо', aggfunc=sum)
+                st.header('Список блюд со всех заказов:')
+                st.dataframe(data=table, width=None, height=None)
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     st.header('Что будете кушать?')
