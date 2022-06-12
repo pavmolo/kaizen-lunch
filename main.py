@@ -49,7 +49,7 @@ def show_predict_page():
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
-        resp = sheet.values().append(spreadsheetId=sheet_id,
+        resp = conn.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
                                      body={'values': order_list_full}).execute()
