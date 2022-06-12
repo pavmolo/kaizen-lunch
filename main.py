@@ -7,7 +7,7 @@ import plotly.express as px
 from datetime import datetime
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-from random import randrange
+
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -66,4 +66,7 @@ def show_predict_page():
       resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
       col2.write('Запрос принят')
 # Вызываем приложение
+today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
+today_dish_list = pd.read_csv(today_dish_list_csv)
+col2.dataframe(data=today_dish_list, width=None, height=None)
 show_predict_page()
