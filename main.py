@@ -11,6 +11,8 @@ from gsheetsdb import connect
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
                                                                     scopes=["https://www.googleapis.com/auth/spreadsheets",],)
 conn = connect(credentials=credentials)
+sheet_id = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
+
 
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
@@ -46,5 +48,10 @@ def show_predict_page():
     order_list_full['Едок'] = member
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
+    if col2.button('Отправить запрос на еду', key=None, help=None, on_click=None, args=None, kwargs=None, *, disabled=False):
+        resp = sheet.values().append(spreadsheetId=sheet_id,
+                                     ranges="base",
+                                     valueInputOption='RAW',
+                                     body={'values': order_list_full}).execute()
 # Вызываем приложение
 show_predict_page()
