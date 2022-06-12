@@ -67,7 +67,7 @@ def show_predict_page():
       col2.write('Запрос принят')
       today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
       today_dish_list = pd.read_csv(today_dish_list_csv)
-      today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата'])
+      today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата'], format='%Y%m%d')
       col2.dataframe(data=today_dish_list, width=None, height=None)
 # Вызываем приложение
 
