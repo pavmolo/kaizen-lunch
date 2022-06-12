@@ -41,8 +41,8 @@ ln_list = len(dish_list)
 today = datetime.today()
 # Функция приложения
 def show_predict_page():
-    d = st.date_input("Сегодня:", today)
-    st.write('Текущая дата:', d)
+    #d = st.date_input("Сегодня:", today)
+    st.write('Текущая дата:', pd.Timestamp.today().date())
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     order_list = []
     for i in range(0, ln_list):
