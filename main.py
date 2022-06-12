@@ -20,7 +20,7 @@ SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
 SAMPLE_RANGE_NAME = 'base'
 
 
-service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
+service = build('sheets', 'v4', credentials=credentials)
 sheet = service.spreadsheets()
 
 
