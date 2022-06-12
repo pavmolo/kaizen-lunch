@@ -4,7 +4,6 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
-from gsheetsdb import connect
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from random import randrange
@@ -12,13 +11,6 @@ from random import randrange
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
                                                                     scopes=["https://www.googleapis.com/auth/spreadsheets",],)
-conn = connect(credentials=credentials)
-
-
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-# The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
-SAMPLE_RANGE_NAME = 'base'
 
 
 service = build('sheets', 'v4', credentials=credentials)
@@ -65,8 +57,8 @@ def show_predict_page():
         resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
-                                     body={"majorDimension": "ROWS",
-                                           'values': [[5]]}).execute()
+                                     body={"majorDimension": "ROWS", 
+                                           'values': 5}).execute()
         col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
