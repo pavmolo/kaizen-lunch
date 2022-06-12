@@ -12,7 +12,7 @@ from random import randrange
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
                                                                     scopes=["https://www.googleapis.com/auth/spreadsheets",],)
-#conn = connect(credentials=credentials)
+conn = connect(credentials=credentials)
 
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -66,7 +66,7 @@ def show_predict_page():
                                      ranges="base",
                                      valueInputOption='RAW',
                                      body={"majorDimension": "ROWS",
-                                           'values': [[randrange(10,99) for i in range(0,6)]]}).execute()
+                                           'values': [[5]]}).execute()
         col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
