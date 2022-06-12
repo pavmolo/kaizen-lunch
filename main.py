@@ -71,7 +71,7 @@ def show_predict_page():
       today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().date()]
       col2.dataframe(data=today_dish_list_fin, width=None, height=None)
       table = pd.pivot_table(today_dish_list_fin, values='Количество', index='Блюдо', aggfunc=sum)
-      st.dataframe(data=today_dish_list_fin, width=None, height=None)
+      st.dataframe(data=table, width=None, height=None)
 # Вызываем приложение
 
 show_predict_page()
