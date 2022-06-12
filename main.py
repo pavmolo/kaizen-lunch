@@ -61,10 +61,11 @@ def show_predict_page():
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
+        add_list = order_list_full.to_dict()
         resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
-                                     body={'values': order_list_full.to_dict()}).execute()
+                                     body=add_list).execute()
         col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
