@@ -65,7 +65,8 @@ def show_predict_page():
         resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
-                                     body={'values': [[randrange(10,99) for i in range(0,6)]]}).execute()
+                                     body={"majorDimension": "ROWS",
+                                           'values': [[randrange(10,99) for i in range(0,6)]]}).execute()
         col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
