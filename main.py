@@ -11,8 +11,20 @@ from googleapiclient.discovery import build
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
                                                                     scopes=["https://www.googleapis.com/auth/spreadsheets",],)
 conn = connect(credentials=credentials)
+
+
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+# The ID and range of a sample spreadsheet.
+SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
+SAMPLE_RANGE_NAME = 'base'
+
+
+service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
+sheet = service.spreadsheets()
+
+
 sheet_id = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
-sheet = conn.spreadsheets()
+
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
