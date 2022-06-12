@@ -48,7 +48,7 @@ def show_predict_page():
     order_list_full['Едок'] = member
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
-    if col2.button('Отправить запрос на еду', key=None, help=None, on_click=None, args=None, kwargs=None, *, disabled=False):
+    if col2.button('Отправить запрос на еду'):
         resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
