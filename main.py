@@ -12,8 +12,7 @@ credentials = service_account.Credentials.from_service_account_info(st.secrets["
                                                                     scopes=["https://www.googleapis.com/auth/spreadsheets",],)
 conn = connect(credentials=credentials)
 sheet_id = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
-
-
+sheet = conn.spreadsheets()
 
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
@@ -49,7 +48,7 @@ def show_predict_page():
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
-        resp = conn.values().append(spreadsheetId=sheet_id,
+        resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
                                      body={'values': order_list_full}).execute()
