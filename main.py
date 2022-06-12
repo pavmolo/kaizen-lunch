@@ -65,8 +65,9 @@ def show_predict_page():
         body.append(stroka)
       resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
       col2.write('Запрос принят')
+      today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
+      today_dish_list = pd.read_csv(today_dish_list_csv)
+      col2.dataframe(data=today_dish_list, width=None, height=None)
 # Вызываем приложение
-today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
-today_dish_list = pd.read_csv(today_dish_list_csv)
-col2.dataframe(data=today_dish_list, width=None, height=None)
+
 show_predict_page()
