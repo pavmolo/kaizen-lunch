@@ -1,4 +1,5 @@
 import streamlit as st
+import os.path
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -8,13 +9,17 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from random import randrange
 
-# Create a connection object.
-credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
-                                                                    scopes=["https://www.googleapis.com/auth/spreadsheets",],)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, 'credentials.json')
+credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
+# The ID and range of a sample spreadsheet.
+SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpdzsndgnYIsZfF67ySaBjAEsUEsDIwTdo'
+SAMPLE_RANGE_NAME = 'base'
 
-service = build('sheets', 'v4', credentials=credentials)
-sheet = service.spreadsheets()
+service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
+
 
 
 sheet_id = '1qZS-Y7NxD15B3rPTGpdzsndgnYIsZfF67ySaBjAEsUEsDIwTdo'
@@ -54,8 +59,8 @@ def show_predict_page():
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
-      resp = sheet.values().update(spreadsheetId=sheet_id, ranges="base", valueInputOption='RAW', body={"majorDimension": "ROWS",
-                                           'values': [[randrange(10,99) for i in range(0,6)]]}).execute()
+      resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={"majorDimension": "ROWS",
+                                           'values': [randrange(10,99) for i in range(0,6)]}).execute()
       col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
