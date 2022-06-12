@@ -59,8 +59,8 @@ def show_predict_page():
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
       body = []
-      for row in order_list_full:
-        stroka = [row[3], row[2], row[0], row[1]]
+      for row in order_list_full.index:
+        stroka = [order_list_full.loc[row][3], order_list_full.loc[row][2], order_list_full.loc[row][0], order_list_full.loc[row][1]]
         body.append(stroka)
       resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
       col2.write('Запрос принят')
