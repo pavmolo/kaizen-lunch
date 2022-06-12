@@ -65,7 +65,7 @@ def show_predict_page():
         resp = sheet.values().append(spreadsheetId=sheet_id,
                                      ranges="base",
                                      valueInputOption='RAW',
-                                     body={'values': order_list_full.values()}).execute()
+                                     body={'values': order_list_full.values.tolist()}).execute()
         col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
