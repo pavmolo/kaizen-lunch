@@ -7,6 +7,7 @@ from datetime import datetime
 from gsheetsdb import connect
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+from random import randrange
 
 # Create a connection object.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], 
