@@ -60,7 +60,7 @@ def show_predict_page():
     if col2.button('Отправить запрос на еду'):
       body = []
       for row in order_list_full:
-        stroka = [row['Дата'], row['Едок'], row['Блюдо'], row['Количество']]
+        stroka = [row[3], row[2], row[0], row[1]]
         body.append(stroka)
       resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
       col2.write('Запрос принят')
