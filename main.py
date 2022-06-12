@@ -44,6 +44,7 @@ def show_predict_page():
     st.title('Форма заказа еды')
     #d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', pd.Timestamp.today().date())
+    st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     order_list = []
     for i in range(0, ln_list):
