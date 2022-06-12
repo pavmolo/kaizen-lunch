@@ -60,7 +60,7 @@ def show_predict_page():
     order_list_full['Дата'] = today
     col2.dataframe(data=order_list_full, width=None, height=None)
     if col2.button('Отправить запрос на еду'):
-      resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': [[randrange(10,99) for i in range(0,6)]]}).execute()
+      resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': [[1,2], [2,3]]}).execute()
       col2.write('Запрос принят')
 # Вызываем приложение
 show_predict_page()
