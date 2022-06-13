@@ -43,7 +43,7 @@ ln_list = len(dish_list)
 today = datetime.today()
 # Функция приложения
 def show_predict_page():
-    st.title('Форма заказа еды')
+    st.title('🍜🥓Форма заказа еды🥓🍜')
     #d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', pd.Timestamp.today().date())
     with st.expander("Заказы на сегодня"):
