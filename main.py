@@ -58,7 +58,7 @@ def show_predict_page():
         st.dataframe(data=table, width=None, height=None)
         edoki = today_dish_list_fin['Едок'].unique()
         st.header('Список активных едоков:')
-        st.dataframe(data=edoki, width=None, height=None)
+        st.table(data=edoki)
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     st.header('Что будете кушать?')
