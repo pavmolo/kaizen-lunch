@@ -57,8 +57,9 @@ def show_predict_page():
         st.header('Список блюд со всех заказов:')
         st.table(data=table)
         edoki = today_dish_list_fin['Едок'].unique()
-        st.header('Список активных едоков:')
-        st.table(data=edoki)
+        #st.header('Список активных едоков:')
+        #st.table(data=edoki)
+    st.header('Активные едоки сегодня:')
     for i in edoki:
         with st.expander(i):
             edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
