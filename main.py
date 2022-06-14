@@ -60,7 +60,7 @@ def show_predict_page():
         st.header('Список активных едоков:')
         st.table(data=edoki)
     for i in edoki:
-        with st.expander("Заказы на сегодня"):
+        with st.expander(i):
             edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i]
             st.table(data=edok_list)
     st.header('Кто вы:')
