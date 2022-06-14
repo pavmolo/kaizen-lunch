@@ -56,7 +56,7 @@ def show_predict_page():
         table = pd.pivot_table(today_dish_list_fin, values='Количество', index='Блюдо', aggfunc=sum)
         st.header('Список блюд со всех заказов:')
         st.dataframe(data=table, width=None, height=None)
-        edoki = unique(today_dish_list_fin['Едок'])
+        edoki = today_dish_list_fin['Едок'].unique()
         st.header('Список активных едоков:')
         st.dataframe(data=edoki, width=None, height=None)
     st.header('Кто вы:')
