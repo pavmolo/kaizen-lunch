@@ -61,8 +61,8 @@ def show_predict_page():
         st.table(data=edoki)
     for i in edoki:
         with st.expander(i):
-            edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'])
-            st.table(data=edok_list, axis=1)
+            edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
+            st.table(data=edok_list)
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     st.header('Что будете кушать?')
