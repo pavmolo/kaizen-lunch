@@ -78,20 +78,25 @@ def show_predict_page():
         order_list.append(dish_item)
     order_list = pd.DataFrame(order_list, columns=['Блюдо', 'Количество'])
     order_list_not_zero = order_list[order_list['Количество'] > 0]
-    st.header('Ваш заказ:')
-    st.dataframe(data=order_list_not_zero, width=None, height=None)
     order_list_full = order_list_not_zero
     order_list_full['Едок'] = member
     order_list_full['Дата'] = str(today)
     order_list_full['Количество'] = order_list_full['Количество'].astype('str')
-    #st.dataframe(data=order_list_full, width=None, height=None)
-    if st.button('Отправить запрос на еду'):
-      body = []
-      for row in order_list_full.index:
-        stroka = [order_list_full.loc[row][3], order_list_full.loc[row][2], order_list_full.loc[row][0], order_list_full.loc[row][1]]
-        body.append(stroka)
-      resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': body}).execute()
-      st.success('ВАШ ЗАКАЗ ПРИНЯТ!')
+    
+    # Блок отображения делаемого заказа
+    if len(order_list_not_zero) !=0:
+        st.header('Ваш заказ:')
+        st.dataframe(data=order_list_not_zero, width=None, height=None)
+        # Кнопка заказа еды
+        #st.dataframe(data=order_list_full, width=None, height=None)
+        if st.button('Отправить запрос на еду'):
+            order = []
+            for row in order_list_full.index:
+                stroka = [order_list_full.loc[row][3], order_list_full.loc[row][2], order_list_full.loc[row][0], order_list_full.loc[row][1]]
+                order.append(stroka)
+            resp = service.append(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME, valueInputOption='USER_ENTERED', body={'values': order}).execute()
+            st.success('ВАШ ЗАКАЗ ПРИНЯТ!')
+    
 # Вызываем приложение
 
 show_predict_page()
