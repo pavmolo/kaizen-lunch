@@ -49,8 +49,6 @@ table = pd.pivot_table(today_dish_list_fin, values='Количество', index
 edoki = today_dish_list_fin['Едок'].unique()
 # Функция приложения
 def show_predict_page():
-    # Clear all those elements:
-    placeholder.empty()
     st.title('🍜🥓Форма заказа еды🥓🍜')
     #d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', pd.Timestamp.today().date())
