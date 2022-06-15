@@ -45,7 +45,6 @@ today_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out
 today_dish_list = pd.read_csv(today_dish_list_csv)
 today_dish_list['Дата'] = pd.to_datetime(today_dish_list['Дата']).dt.date
 today_dish_list_fin = today_dish_list[today_dish_list['Дата'] == pd.Timestamp.today().date()]
-edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
 table = pd.pivot_table(today_dish_list_fin, values='Количество', index='Блюдо', aggfunc=sum)
 edoki = today_dish_list_fin['Едок'].unique()
 # Функция приложения
@@ -64,6 +63,7 @@ def show_predict_page():
         st.header('Активные едоки сегодня:')
         for i in edoki:
             with st.expander(i):
+                edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
                 st.table(data=edok_list)
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
