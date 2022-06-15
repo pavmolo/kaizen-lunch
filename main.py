@@ -52,19 +52,22 @@ def show_predict_page():
     st.title('🍜🥓Форма заказа еды🥓🍜')
     #d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', pd.Timestamp.today().date())
-    with st.expander("Заказы на сегодня"):
-        #st.header('Все заказы на сегодня:')
-        #st.dataframe(data=today_dish_list_fin, width=None, height=None)
-        st.header('Список блюд со всех заказов:')
-        st.table(data=table)
-        #st.header('Список активных едоков:')
-        #st.table(data=edoki)
-    if len(edoki) != 0:
-        st.header('Активные едоки сегодня:')
-        for i in edoki:
-            with st.expander(i):
-                edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
-                st.table(data=edok_list)
+    if len(table) != 0:
+        with st.expander("Заказы на сегодня"):
+            #st.header('Все заказы на сегодня:')
+            #st.dataframe(data=today_dish_list_fin, width=None, height=None)
+            st.header('Список блюд со всех заказов:')
+            st.table(data=table)
+            #st.header('Список активных едоков:')
+            #st.table(data=edoki)
+        if len(edoki) != 0:
+            st.header('Активные едоки сегодня:')
+            for i in edoki:
+                with st.expander(i):
+                    edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
+                    st.table(data=edok_list)
+    else:
+        st.header('На сегодня еще никто ничего не заказал')
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     st.header('Что будете кушать?')
