@@ -67,7 +67,7 @@ def show_predict_page():
                     edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
                     st.table(data=edok_list)
     else:
-        st.header('На сегодня еще никто ничего не заказал')
+        st.write('На сегодня еще никто ничего не заказал')
     st.header('Кто вы:')
     member = st.radio('Выберите едока', df_member_list, index=0, horizontal=True)
     st.header('Что будете кушать?')
