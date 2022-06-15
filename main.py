@@ -61,7 +61,7 @@ def show_predict_page():
             #st.write('Список активных едоков:')
             #st.table(data=edoki)
         if len(edoki) != 0:
-            st.header('Активные едоки сегодня:')
+            st.write('Активные едоки сегодня:')
             for i in edoki:
                 with st.expander(i):
                     edok_list = today_dish_list_fin[today_dish_list_fin['Едок'] == i].drop(labels=['Дата', 'Едок'], axis=1)
