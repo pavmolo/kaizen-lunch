@@ -53,7 +53,7 @@ def show_predict_page():
     #d = st.date_input("Сегодня:", today)
     st.write('Текущая дата:', pd.Timestamp.today().date())
     if len(table) != 0:
-        with st.expander("Заказы на сегодня"):
+        with st.write("Заказы на сегодня"):
             #st.header('Все заказы на сегодня:')
             #st.dataframe(data=today_dish_list_fin, width=None, height=None)
             st.header('Список блюд со всех заказов:')
