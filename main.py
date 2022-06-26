@@ -27,18 +27,8 @@ list_2 = 'team'
 df_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
 member_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_2)
 
-
-@st.cache
-def df_dish_list():
-    df_dish_list = pd.read_csv(df_dish_list_csv)
-    df_dish_list = pd.Series(df_dish_list['dish_id'])
-    return df_dish_list
-
-@st.cache
-def df_member_list():
-    member_list = pd.read_csv(member_list_csv)
-    df_member_list = pd.Series(member_list['member'])
-    return df_member_list
+df_dish_list = pd.Series(df_dish_list['dish_id'])
+df_member_list = pd.Series(member_list['member'])
 
 df_dish_list = df_dish_list()
 df_member_list = df_member_list()
