@@ -35,8 +35,19 @@ member_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv
 df_dish_list = pd.read_csv(df_dish_list_csv)
 member_list = pd.read_csv(member_list_csv)
 df_dish_list.set_index('dish_name', inplace=True)
-df_dish_list = pd.Series(df_dish_list['dish_id'])
-df_member_list = pd.Series(member_list['member'])
+
+@st.cache
+def df_dish_list():
+    df_dish_list = pd.Series(df_dish_list['dish_id'])
+    return df_dish_list
+
+@st.cache
+def df_member_list():
+    df_member_list = pd.Series(member_list['member'])
+    return df_member_list
+
+df_dish_list = df_dish_list()
+df_member_list = df_member_list()
 
 dish_list = df_dish_list.index
 ln_list = len(dish_list)
