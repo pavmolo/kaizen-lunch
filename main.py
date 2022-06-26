@@ -7,32 +7,23 @@ import plotly.express as px
 from datetime import datetime
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-
-
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=SCOPES)
-
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = '1qZS-Y7NxD15B3rPTGpYIsZfF67ySaBjAEsUEsDIwTdo'
 SAMPLE_RANGE_NAME = 'base'
-
 service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
-
-
-
-
 gsheetid = '1ubyAIc1JOWLRXz-vvTmfhbi1-AZALWKkQo8hJkfvVrc'
 list_1 = 'menu'
 list_2 = 'team'
 df_dish_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_1)
 member_list_csv = "https://docs.google.com/spreadsheets/d/{}/gviz/tq?tqx=out:csv&sheet={}".format(gsheetid, list_2)
-
+df_dish_list = pd.read_csv(df_dish_list_csv)
+member_list = pd.read_csv(member_list_csv)
+df_dish_list.set_index('dish_name', inplace=True)
 df_dish_list = pd.Series(df_dish_list['dish_id'])
 df_member_list = pd.Series(member_list['member'])
-
-df_dish_list = df_dish_list()
-df_member_list = df_member_list()
-
 dish_list = df_dish_list.index
 ln_list = len(dish_list)
 today = datetime.today()
@@ -96,5 +87,4 @@ def show_predict_page():
    
     
 # Вызываем приложение
-
 show_predict_page()
